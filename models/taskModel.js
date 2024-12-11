@@ -1,30 +1,27 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const taskSchema = mongoose.Schema({
-    'title': {
+const bookSchema = mongoose.Schema({
+    'todo': {
         type: String,
         required: true
-    }, 
+    },
     'description': {
+        type: String
+    },
+    'owner': {
         type: String,
         required: true
     },
-
-    'owner':{
-        type: String,
-        required: true
-    },
-
     'status': {
-        type: String, 
+        type: String,
         required: true
     }
 
 },
 {
-    timestamps: true,
+    timestamps: true
 }
+)
 
-);
 
-export const Task = mongoose.model('tasks', taskSchema);
+export const Task = mongoose.model('tasks', bookSchema);

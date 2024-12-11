@@ -1,24 +1,26 @@
 import express from 'express';
-import {PORT, mongoDBURL} from './config.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import router from './routes/taskRoute.js';
+import taskRouter from './routes/tasksRoute.js';
+import {PORT, mongoDBURL} from './config.js';
 
 const app = express();
 
 app.use(cors());
-
 app.use(express.json());
 
-app.use('/', router);
+app.use('/', taskRouter);
+
 
 mongoose.connect(mongoDBURL)
 .then(()=>{
-    console.log("Connected with database");
+    console.log("Database Connected");
+
     app.listen(PORT, ()=>{
-        console.log("App started at Port", PORT);
+        console.log(`App is listening to port ${PORT}`)
     })
 })
-.catch(error=>{
-    console.log("Failed to connect with the database", error);
+
+.catch((error)=>{
+    console.log("Failed to connect with database");
 })
